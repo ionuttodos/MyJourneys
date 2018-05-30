@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Background location tracker
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button ion-button full primary (click)="start()" (change)="hide()">Start</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button  full primary (click)="stop()">Stop</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <h3 >Current Latitude: {{locationTracker.lat}}</h3>
+  <h3>Current Longitude: {{locationTracker.lng}}</h3>
+
+  <p *ngFor="let location of journey; let i = index">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          Row {{i}} :
+        </ion-col>
+        <ion-col>
+          Latitude: {{journey[i].latitude}}
+          Longitude:{{journey[i].longitude}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+ </p>
+<!--
+  <ion-card *ngFor="let journey of journeys; let i = index" (click)="">
+    <ion-card-content text-center>
+      <ion-card-title>
+        Jouney no {{i}}}timestamp:{{ journeys[i][0].timestamp }}
+      </ion-card-title> -->
+ <!--     <p>has {{journeys[i].length}} entries</p>
+      <p>Latitude{{ journeys[i][0].latitude }}</p>
+      <p>Longitude{{ journeys[i][0].longitude }}</p>
+      <!--     <p>{{geocoder.reverseGeocode(journeys[i][0].latitude,journeys[i][0].longitude)}}</p>
+    </ion-card-content>
+  </ion-card>
+-->
+</ion-content>

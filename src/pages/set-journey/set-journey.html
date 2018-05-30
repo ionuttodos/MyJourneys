@@ -1,0 +1,97 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>set-journey</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <ion-list>
+
+      <ion-item>
+        <ion-label fixed>From</ion-label>
+        <ion-input
+          type="text"
+          ng-value="Preston"
+          name="from"
+          ngModel
+          required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>To</ion-label>
+        <ion-input
+
+          placeholder={{journey[0].latitude}}
+          [(ngModel)]="to"
+          name="to"
+          ngModel
+          required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Short Description</ion-label>
+        <ion-textarea
+          name="description"
+          ngModel
+          required></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Distance</ion-label>
+        <ion-textarea
+          name="distance"
+          ngModel
+          required></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Duration</ion-label>
+        <ion-textarea
+          name="duration"
+          ngModel
+          required></ion-textarea>
+      </ion-item>
+
+    </ion-list>
+
+    <ion-grid>
+
+      <ion-row>
+        <ion-col>
+
+
+
+         <agm-map [latitude]="journey[0].latitude" [longitude]="journey[0].longitude" [zoom]="16">
+            <agm-marker *ngFor="let point of journey" [latitude]="point.latitude" [longitude]="point.longitude">
+            </agm-marker>
+
+              <agm-polyline *ngFor="let point of journey;let i = index;" [strokeWeight]="2" [strokeColor]="red">
+                <agm-polyline-point [latitude]="point.latitude" [longitude]="point.longitude">
+                </agm-polyline-point>
+              </agm-polyline>
+
+          </agm-map>
+
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <button
+            ion-button
+            color="secondary"
+            block
+            type="submit"
+            [disabled]="!f.valid ">
+            Save Journey
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
